@@ -1,35 +1,61 @@
-//
-// Created by Amitai on 1/4/2024.
-//
-
 #include "mymat.h"
 #include <stdio.h>
 
+#define MATRIX_SIZE 4
 
-void mat_read(mat *matrix) {
-    // קוד המקבל קלט מהמשתמש ומתחיל למלא את המטריצה
+void mul_mat(mat *matrix_a, mat *matrix_b, mat *result) {
+    for (int i = 0; i < 4; ++i) {
+        for (int j = 0; j < 4; ++j) {
+            double sum = 0.0;
+            for (int k = 0; k < 4; ++k) {
+                sum += matrix_a->data[i * 4 + k] * matrix_b->data[k * 4 + j];
+            }
+            result->data[i * 4 + j] = sum;
+        }
+    }
 }
 
-void mat_print(mat *matrix) {
-    // קוד המדפיס את המטריצה
+void trans_mat(mat *matrix1, mat *matrix2) {
+    for (int i = 0; i < 4; ++i) {
+        for (int j = 0; j < 4; ++j) {
+            (matrix2 -> data)[i*4 + j] = (matrix1 -> data)[j*4 + i];
+        }
+    }
 }
 
-void mat_add(mat *result, mat *matrix_a, mat *matrix_b) {
-    // קוד המבצע חיבור מטריצות
+void mul_scalar(mat *matrix1,  double scalar, mat *matrix2)
+{
+    for (int i = 0; i < 16; ++i) {
+        (matrix2 -> data)[i] = (matrix1 -> data)[i] * scalar;
+    }
 }
 
-void mat_sub(mat *result, mat *matrix_a, mat *matrix_b) {
-    // קוד המבצע חיסור מטריצות
+void add_mat(mat *matrix1, mat *matrix2, mat *matrix3) {
+    for (int i = 0; i < 16; ++i) {
+        (matrix3 -> data)[i] = (matrix1 -> data)[i] + (matrix2 -> data)[i];
+    }
 }
 
-void mat_mul(mat *result, mat *matrix_a, mat *matrix_b) {
-    // קוד המבצע כפל מטריצות
+void sub_mat(mat *matrix1, mat *matrix2, mat *matrix3) {
+    for (int i = 0; i < 16; ++i) {
+        (matrix3 -> data)[i] = (matrix1 -> data)[i] - (matrix2 -> data)[i];
+    }
 }
 
-void scalar_mul(mat *result, mat *matrix, double scalar) {
-    // קוד המבצע כפל מטריצה בסקלר
+void mat_set_element(mat *matrix, int location, double num) {
+    (matrix -> data)[location] = num;
+}
+void print_mat(mat *matrix) {
+    for (int i = 0; i < 16; ++i) {
+        if(i % 4 == 3) {
+            printf("%.2f\n", (matrix -> data)[i]);
+        }
+        else {
+            printf("%.2f\t", (matrix -> data)[i]);
+        }
+    }
 }
 
-void mat_trans(mat *result, mat *matrix) {
-    // קוד המבצע שחלוף של מטריצה
-}
+
+
+

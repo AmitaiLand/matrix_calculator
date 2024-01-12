@@ -7,16 +7,15 @@
 // h.mymat
 
 typedef struct {
-    double data[4][4];
+    double data[16];
 } mat;
-
-void mat_read(mat *matrix);
-void mat_print(mat *matrix);
-void mat_add(mat *result, mat *matrix_a, mat *matrix_b);
-void mat_sub(mat *result, mat *matrix_a, mat *matrix_b);
-void mat_mul(mat *result, mat *matrix_a, mat *matrix_b);
-void scalar_mul(mat *result, mat *matrix, double scalar);
-void mat_trans(mat *result, mat *matrix);
+void print_mat(mat *matrix);
+void add_mat(mat *result, mat *matrix_a, mat *matrix_b);
+void sub_mat(mat *result, mat *matrix_a, mat *matrix_b);
+void mul_mat(mat *matrix_a, mat *matrix_b, mat *result);
+void mul_scalar(mat *matrix, double scalar, mat *result);
+void trans_mat(mat *result, mat *matrix);
+void mat_set_element(mat *matrix, int location, double num);
 
 #endif
 
