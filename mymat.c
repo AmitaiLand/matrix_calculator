@@ -4,14 +4,18 @@
 #define MATRIX_SIZE 4
 
 void mul_mat(mat *matrix_a, mat *matrix_b, mat *result) {
+    mat matrix_temp;
     for (int i = 0; i < 4; ++i) {
         for (int j = 0; j < 4; ++j) {
             double sum = 0.0;
             for (int k = 0; k < 4; ++k) {
                 sum += matrix_a->data[i * 4 + k] * matrix_b->data[k * 4 + j];
             }
-            result->data[i * 4 + j] = sum;
+            matrix_temp.data[i * 4 + j] = sum;
         }
+    }
+    for (int i = 0; i < 16; ++i) {
+        result->data[i] = matrix_temp.data[i];
     }
 }
 
@@ -55,7 +59,12 @@ void print_mat(mat *matrix) {
         }
     }
 }
-
+void mat_reset(mat *matrix)
+{
+    for (int i = 0; i < 16; ++i) {
+        matrix->data[i] = 0;
+    }
+}
 
 
 

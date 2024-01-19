@@ -16,6 +16,7 @@ void mul_mat(mat *matrix_a, mat *matrix_b, mat *result);
 void mul_scalar(mat *matrix, double scalar, mat *result);
 void trans_mat(mat *result, mat *matrix);
 void mat_set_element(mat *matrix, int location, double num);
+void mat_reset(mat *matrix);
 
 #endif
 
